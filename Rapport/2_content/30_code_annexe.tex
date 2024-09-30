@@ -1,0 +1,121 @@
+\section*{Code annexe}
+    \addcontentsline{toc}{section}{Code annexe}
+
+\begin{lstlisting}[caption=Code exemple : La loi normale, label=lst:normal_distribution]  
+ #------------------------ Code exemple : La loi normale ------------------------
+ # Args :
+ #   n: taille de l'échantillon -> int
+ #   ech: simulation de l'échantillon -> vecteur
+ #   quantile.normale: quantile de la loi normale -> vecteur
+ #   quantile.echantillon: quantile de l'échantillon -> vecteur
+ #-------------------------------------------------------------------------------
+
+ n<-30   #Taille de l'échantillon 30
+ # Simulation d'une loi normale d'espérance 1 et de variance 4 (écart-type = 2)
+ ech<-rnorm(n,mean = 0,sd = 2)
+
+ # Graphique 1
+     # Création de l'histogramme de ech
+     hist(ech, freq=F)
+     # Ajout de la courbe de densité de a loi normale
+     curve(dnorm(x,mean=0,sd=2),from=-6,to=6,ylab="densité",add=T,col="red")
+ # Graphique 2
+     # Tracer le graphique de ech
+     plot(ecdf(ech))
+     # Tracer la fonction de répartition de ech
+     curve(pnorm(x,mean=0,sd=2),from=-6,to=6,ylab="Fonction de répartition",add=T,col="red")
+
+ # Création du quantile de la loi normale d'espérance 1 et d'écart-type = 2
+ quantile.normale<-qnorm(p=c(0.05,0.1,0.25,0.5,0.75,0.9,0.95),mean = 0,sd = 2)
+ # Création du quantile de la simulation "ech"
+ quantile.echantillon<-quantile(x=ech, probs=c(0.05,0.1,0.25,0.5,0.75,0.9,0.95))
+ # Tableau de comparaison des 2 quantiles
+ (rbind(quantile.echantillon,quantile.normale))
+\end{lstlisting}
+
+
+\begin{lstlisting}[caption=Code exemple : Simulation de la loi uniforme discrète, label=lst:uniform_distribution]  
+ #------------------- Code exemple : La loi uniforme discrete -------------------
+ # Args :
+ #   k: taille de l'échantillon -> int
+ #   ech: simulation de l'échantillon -> vecteur
+ #-------------------------------------------------------------------------------
+
+  k <- 30  # Création de la taille de l'échantillon
+  # Simulation d'un échantillon de taille n et de valeurs {1,...,10}.
+  ech<-sample(1:10,k,replace=T)
+  
+  # Graphique 1
+    # Création d'une graphique bar 
+    barplot(table(ech)/k)
+    # Trace de la probabilite de la loi uniforme discrete sur {1,...,10}.
+    abline(h=1/10,col="red")
+\end{lstlisting}
+
+
+
+\begin{lstlisting}[caption=Code exemple : Simulation de la loi de Bernoulli, label=lst:bernoulli_distribution]  
+ #---------------------- Code exemple : La loi de Bernoulli ---------------------
+ # Args :
+ #   n: taille de l'échantillon -> int
+ #   p: paramètre de la loi de Bernoulli -> float
+ #   esp: espérance théorique -> float
+ #   var: variance théorique -> float
+ #   ech: simulation de l'échantillon -> vecteur
+ #-------------------------------------------------------------------------------
+
+ n<- 30 # Taille de l'échantillon
+ p<-0.3  # paramètre de la loi de Bernoulli
+ esp<-p # Espérence théorique
+ var<-p*(1-p) # espérance théorique
+
+ # Simulation d'un échantillon de taille n selon une loi de Bernoulli
+ ech<-rbinom(n,size = 1,prob = p) # size = 1 correspond à la loi de Bernoulli
+ table(ech)/n # Affichage des fréquences observées
+\end{lstlisting}
+
+
+\begin{lstlisting}[caption=Code exemple : Simulation de la loi binomiale, label=lst:binomiale_distribution]  
+ #---------------------- Code exemple : La loi de Bernoulli ---------------------
+ # Args :
+ #   N: nombre d'observations -> int
+ #   n: nombre d'essais -> int
+ #   p_1: probabilité succès du premier test -> float
+ #   p_2: probabilité de succès du deuxième test -> float
+ #   ech_1: simulation de l'échantillon pour le premier test -> vecteur
+ #   ech_2: simulation de l'échantillon pour le deuxième test -> vecteu
+ #   ech_3: simulation de l'échantillon pour le troisième -> vecteur
+ #   ech_4: simulation de l'échantillon pour le quatrième -> vecteur
+ #-------------------------------------------------------------------------------
+   
+ N <- 100 # taille de l'échantillon
+ n <- 10  # premier paramètre de la loi
+
+ p_1<- 0.8 # deuxième paramètre de la loi : probabilité de succès
+ p_2<- 0.2 # deuxième paramètre de la loi : probabilité de succès
+
+ ech_1<-rbinom(N,n,p_1) # Simulation d'un échantillon pour p=0.8
+ ech_2<-rbinom(N,n,p_2) # Simulation d'un échantillon pour p=0.2
+
+ # Affichage des la table de propotion de la simulation
+ table(ech_1)/N ; table(ech_2)/N
+
+ dbinom(x=0:n,size = n,prob = p_1) # Simulation de la densité de la loi binomiale pour p=0.8 
+ dbinom(x=0:n,size = n,prob = p_2) #  Simulation de la densité de la loi binomiale pour p=0.2
+
+ ech_3<-rbinom(10000,n,p_1) # Simulation d'un échantillon pour p=0.8 et N=1000
+ ech_4<-rbinom(10000,n,p_2) # Simulation d'un échantillon pour p=0.2 et N=1000
+  \end{lstlisting}
+
+\begin{lstlisting}[caption=Code exemple : Simulation de la loi géométrique, label=lst:geometric_distribution]  
+#----------------------- Code exemple : La loi Géométrique ----------------------
+# Args :
+#   n: nombre d'essais -> int
+#   p: probabilité succès du premier test -> float
+#-------------------------------------------------------------------------------
+    
+n <- 25 # taille de l'échantillon
+p <- 0.3 # paramètre de la loi 
+ech<-rgeom(n,p)+1 # simulation de la loi
+barplot(table(ech))
+\end{lstlisting}

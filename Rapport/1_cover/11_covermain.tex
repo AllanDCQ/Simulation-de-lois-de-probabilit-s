@@ -1,0 +1,16 @@
+% Configuration de l'en-tête et du pied de page avec fancyhdr
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt} % Supprime la ligne de l'en-tête
+
+% Configuration de l'en-tête
+\fancyhead[L]{\includegraphics[height=12pt]{\projecticonl}}
+\fancyhead[C]{\projecttitle} 
+\fancyhead[R]{\includegraphics[height=12pt]{\projecticonr}}
+
+% Configuration du pied de page
+\fancyfoot[L]{\authorname} 
+\fancyfoot[R]{\thepage\ / \pageref{LastPage}} 
+
+% Inclusion des fichiers de couverture
+\AtBeginDocument{\input{1_cover/12_cover_in}}
+\AtEndDocument{\input{1_cover/13_cover_out}}

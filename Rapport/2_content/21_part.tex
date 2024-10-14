@@ -10,7 +10,7 @@
 
 \subsubsection{Exemple - Simulation de la loi uniforme discrète}
 
-  \textbf{Voir code annexe \ref{lst:uniform_distribution}} : \hyperlink{\ref{lst:uniform_distribution}}{Code exemple : Simulation de la loi uniforme discrète}
+  \textbf{Voir Code Github \cite{git} : 2.2.1 Loi uniforme discrète}
 
   \begin{figure}[H]
     \centering
@@ -20,7 +20,7 @@
   \end{figure}
 
 \subsubsection{Analyse des résultats}
-  Dans cet exemple (voir code \ref{lst:uniform_distribution}), nous avons simulé un échantillon de taille $30$ selon une loi uniforme discrète $\mathcal{U}(\{1,\ldots,10\})$ (\ref{eq:loi_uniforme_discrete}). Théoriquement, chaque évenement est équiprobable, donc :
+  Dans cet exemple, nous avons simulé un échantillon de taille $30$ selon une loi uniforme discrète $\mathcal{U}(\{1,\ldots,10\})$ (\ref{eq:loi_uniforme_discrete}). Théoriquement, chaque évenement est équiprobable, donc :
   \[
     \forall k\in \{1,\ldots,10\}, \, p(X=k)=\frac 1{10}
   \]
@@ -46,7 +46,7 @@
 
 \subsubsection{Exemple - Simulation de la loi de Bernoulli}
 
-  \textbf{Voir code annexe \ref{lst:bernoulli_distribution}} : \hyperlink{\ref{lst:bernoulli_distribution}}{Code exemple : Simulation de la loi de Bernoulli}
+\textbf{Voir Code Github \cite{git} : 2.2.2 Loi de Bernoulli}
 
 \begin{table}[H]
   \centering
@@ -92,7 +92,7 @@
 
   \subsubsection{Exemple - Simulation de la loi de binomiale}
 
-    \textbf{Voir code annexe \ref{lst:binomiale_distribution}} : \hyperlink{\ref{lst:binomiale_distribution}}{Code exemple : Simulation de la loi binomiale}
+  \textbf{Voir Code Github \cite{git} : 2.2.3 Loi de Binomiale}
     \begin{table}[H]
       \centering
       \begin{minipage}{0.45\textwidth}
@@ -152,7 +152,7 @@
     \end{table}
 
     \subsubsection{Analyse des résultats}
-    Dans cet exemple (voir code \ref{lst:binomiale_distribution}), nous avons simulé un échantillon de taille $100$ selon deux lois binomiales : $\mathcal B(10,0.8)$ et $\mathcal B(10,0.2)$. Pour chaque loi, nous avons observé le nombre de succès sur 10 essais répétés 100 fois de manière indépendante.
+    Dans cet exemple, nous avons simulé un échantillon de taille $100$ selon deux lois binomiales : $\mathcal B(10,0.8)$ et $\mathcal B(10,0.2)$. Pour chaque loi, nous avons observé le nombre de succès sur 10 essais répétés 100 fois de manière indépendante.
     
     On peut s'apercevoir que pour la loi $\mathcal B(10,0.8)$, le fréquence la plus élevé est $p(X=8)=0.36$ et pour la loi $\mathcal B(10,0.2)$, la fréquence la plus élevée est $p(X=2)=0.37$. 
     Ce résulat s'explique par la prorpiété d'espérence (moyenne pondérée des valeurs possibles) de la loi binomiale : $\mathbb E[X]=np$.
@@ -181,7 +181,7 @@
 
       \subsubsection{Exemple - Simulation de la loi géométrique}
 
-      \textbf{Voir code annexe \ref{lst:geometric_distribution}} : \hyperlink{\ref{lst:geometric_distribution}}{Code exemple : Simulation de la loi géométrique}
+      \textbf{Voir Code Github \cite{git} : 2.3 Loi Géométrique}
 
       \begin{figure}[H]
         \centering
@@ -191,7 +191,7 @@
       \end{figure}
 
     \subsubsection{Analyse des résultats}
-    Dans cet exemple (voir code \ref{lst:geometric_distribution}), nous avons simulé un échantillon de taille $25$ selon une loi géométrique $\mathcal G(0.3)$.
+    Dans cet exemple, nous avons simulé un échantillon de taille $25$ selon une loi géométrique $\mathcal G(0.3)$.
     Comme nous pouvons le remarquer dans l'histogramme (Figure~\ref{fig:histogramme_ech}), les fréquences observés sont décroissantes, ce qui est conforme à la loi géométrique (\ref{eq:loi_geometrique}). Par exemple :
     \[
       \begin{array}{ll}
@@ -214,7 +214,7 @@
 
     \subsubsection{Exemple - Simulation de la loi Poisson}
 
-      \textbf{Voir code annexe \ref{lst:poisson_distribution}} : \hyperlink{\ref{lst:poisson_distribution}}{Code exemple : Simulation de la loi Poisson}
+      \textbf{Voir Code Github \cite{git} : 2.4 Loi Poisson}
 
       \begin{figure}[H]
         \centering
@@ -245,7 +245,7 @@
       \end{figure}
 
       Lorsque l'on fait varier le paramètre $\lambda$ de la loi de Poisson, on peut observer que la distribution se déplace vers la droite (Figure~\ref{fig:poisson_lambda}). Cela s'explique par le fait que $\lambda$ est l'espérance de la loi de Poisson, dans le tableau ci-dessous Table \ref{tab:poisson_lambda}, on peut voir que pour $\lambda=2$ la médiane et la moyenne sont égales à $2$ (ou très proche en fonction de la taille de l'échantillon $n$)
-      Alors que pour $\lambda=5$, la moyenne est de $5$ et la médiane est de $5$.
+      Alors que pour $\lambda=5$, la moyenne est de $5$ et la médiane est de $5$ (\textbf{Voir code annexe \ref{lst:poisson}: Code :  Variation des paramètres de la loi Poisson})
 
       \begin{table}[H]
         \centering
@@ -253,7 +253,7 @@
 
           \begin{figure}[H]
             \centering
-            \includegraphics[width=0.9\textwidth]{4_attachments/figures/output7.png}
+            \includegraphics[width=0.65\textwidth]{4_attachments/figures/output7.png}
             \caption{Comparaison de la loi de Poisson selon le paramètre $\lambda$}
             \label{fig:poisson_lambda}
           \end{figure}

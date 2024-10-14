@@ -146,14 +146,27 @@
 \input{2_content/22_part}
 
 
-%\input{2_content/28_conclusion}
 
-\newpage 
+% arreter le compteur de page
+\newpage
+\fancyfoot[L]{\authorname} 
+\fancyfoot[C]{} 
+\fancyfoot[R]{} 
+
 \input{2_content/30_code_annexe}
 
 
+\newpage
+\listoffigures
+\listoftables
+\lstlistoflistings
+
 % Bibliographie
-\newpage 
+\newpage
+\fancyfoot[L]{\authorname} 
+\fancyfoot[C]{} 
+\fancyfoot[R]{} 
+
 \input{2_content/29_bibliography}
 
 \end{document}

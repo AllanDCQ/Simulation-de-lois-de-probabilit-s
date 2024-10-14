@@ -1,121 +1,123 @@
 \section*{Code annexe}
     \addcontentsline{toc}{section}{Code annexe}
 
-\begin{lstlisting}[caption=Code exemple : La loi normale, label=lst:normal_distribution]  
- #------------------------ Code exemple : La loi normale ------------------------
- # Args :
- #   n: taille de l'échantillon -> int
- #   ech: simulation de l'échantillon -> vecteur
- #   quantile.normale: quantile de la loi normale -> vecteur
- #   quantile.echantillon: quantile de l'échantillon -> vecteur
- #-------------------------------------------------------------------------------
+\begin{lstlisting}[caption=Code : Variation des paramètres de la loi Poisson, label=lst:poisson]
+n <- 100
+lamda_1 <- 2
+lamda_2 <- 5
+poiss <- rpois(n, lambda = lamda_1)
+poiss2 <- rpois(n, lambda = lamda_2)
+df <- data.frame(value = c(poiss, poiss2), distribution = c(rep("lambda = 2", n), rep("lambda = 5", n)))
+ggplot(df, aes(x=value, fill=distribution)) +  # Histogramme
+  geom_histogram(aes(y=..density..), position="identity", alpha=0.5, bins=30) + 
+  geom_density(alpha=0.5)
 
- n<-30   #Taille de l'échantillon 30
- # Simulation d'une loi normale d'espérance 1 et de variance 4 (écart-type = 2)
- ech<-rnorm(n,mean = 0,sd = 2)
-
- # Graphique 1
-     # Création de l'histogramme de ech
-     hist(ech, freq=F)
-     # Ajout de la courbe de densité de a loi normale
-     curve(dnorm(x,mean=0,sd=2),from=-6,to=6,ylab="densité",add=T,col="red")
- # Graphique 2
-     # Tracer le graphique de ech
-     plot(ecdf(ech))
-     # Tracer la fonction de répartition de ech
-     curve(pnorm(x,mean=0,sd=2),from=-6,to=6,ylab="Fonction de répartition",add=T,col="red")
-
- # Création du quantile de la loi normale d'espérance 1 et d'écart-type = 2
- quantile.normale<-qnorm(p=c(0.05,0.1,0.25,0.5,0.75,0.9,0.95),mean = 0,sd = 2)
- # Création du quantile de la simulation "ech"
- quantile.echantillon<-quantile(x=ech, probs=c(0.05,0.1,0.25,0.5,0.75,0.9,0.95))
- # Tableau de comparaison des 2 quantiles
- (rbind(quantile.echantillon,quantile.normale))
-\end{lstlisting}
-
-
-\begin{lstlisting}[caption=Code exemple : Simulation de la loi uniforme discrète, label=lst:uniform_distribution]  
- #------------------- Code exemple : La loi uniforme discrete -------------------
- # Args :
- #   k: taille de l'échantillon -> int
- #   ech: simulation de l'échantillon -> vecteur
- #-------------------------------------------------------------------------------
-
-  k <- 30  # Création de la taille de l'échantillon
-  # Simulation d'un échantillon de taille n et de valeurs {1,...,10}.
-  ech<-sample(1:10,k,replace=T)
-  
-  # Graphique 1
-    # Création d'une graphique bar 
-    barplot(table(ech)/k)
-    # Trace de la probabilite de la loi uniforme discrete sur {1,...,10}.
-    abline(h=1/10,col="red")
-\end{lstlisting}
-
-
-
-\begin{lstlisting}[caption=Code exemple : Simulation de la loi de Bernoulli, label=lst:bernoulli_distribution]  
- #---------------------- Code exemple : La loi de Bernoulli ---------------------
- # Args :
- #   n: taille de l'échantillon -> int
- #   p: paramètre de la loi de Bernoulli -> float
- #   esp: espérance théorique -> float
- #   var: variance théorique -> float
- #   ech: simulation de l'échantillon -> vecteur
- #-------------------------------------------------------------------------------
-
- n<- 30 # Taille de l'échantillon
- p<-0.3  # paramètre de la loi de Bernoulli
- esp<-p # Espérence théorique
- var<-p*(1-p) # espérance théorique
-
- # Simulation d'un échantillon de taille n selon une loi de Bernoulli
- ech<-rbinom(n,size = 1,prob = p) # size = 1 correspond à la loi de Bernoulli
- table(ech)/n # Affichage des fréquences observées
-\end{lstlisting}
-
-
-\begin{lstlisting}[caption=Code exemple : Simulation de la loi binomiale, label=lst:binomiale_distribution]  
- #---------------------- Code exemple : La loi de Bernoulli ---------------------
- # Args :
- #   N: nombre d'observations -> int
- #   n: nombre d'essais -> int
- #   p_1: probabilité succès du premier test -> float
- #   p_2: probabilité de succès du deuxième test -> float
- #   ech_1: simulation de l'échantillon pour le premier test -> vecteur
- #   ech_2: simulation de l'échantillon pour le deuxième test -> vecteu
- #   ech_3: simulation de l'échantillon pour le troisième -> vecteur
- #   ech_4: simulation de l'échantillon pour le quatrième -> vecteur
- #-------------------------------------------------------------------------------
-   
- N <- 100 # taille de l'échantillon
- n <- 10  # premier paramètre de la loi
-
- p_1<- 0.8 # deuxième paramètre de la loi : probabilité de succès
- p_2<- 0.2 # deuxième paramètre de la loi : probabilité de succès
-
- ech_1<-rbinom(N,n,p_1) # Simulation d'un échantillon pour p=0.8
- ech_2<-rbinom(N,n,p_2) # Simulation d'un échantillon pour p=0.2
-
- # Affichage des la table de propotion de la simulation
- table(ech_1)/N ; table(ech_2)/N
-
- dbinom(x=0:n,size = n,prob = p_1) # Simulation de la densité de la loi binomiale pour p=0.8 
- dbinom(x=0:n,size = n,prob = p_2) #  Simulation de la densité de la loi binomiale pour p=0.2
-
- ech_3<-rbinom(10000,n,p_1) # Simulation d'un échantillon pour p=0.8 et N=1000
- ech_4<-rbinom(10000,n,p_2) # Simulation d'un échantillon pour p=0.2 et N=1000
-  \end{lstlisting}
-
-\begin{lstlisting}[caption=Code exemple : Simulation de la loi géométrique, label=lst:geometric_distribution]  
-#----------------------- Code exemple : La loi Géométrique ----------------------
-# Args :
-#   n: nombre d'essais -> int
-#   p: probabilité succès du premier test -> float
-#-------------------------------------------------------------------------------
-    
-n <- 25 # taille de l'échantillon
-p <- 0.3 # paramètre de la loi 
-ech<-rgeom(n,p)+1 # simulation de la loi
+# Simulez differentes lois de Poisson en faisant varier lambda ainsi que la taille de l'echantillon
+lambda <- 30 # paramètre de la loi de Poisson
+n <- 1000
+ech <- rpois(n,lambda) # simulation de la loi de Poisson
+summary(ech)
 barplot(table(ech))
 \end{lstlisting}
+
+\begin{lstlisting}[caption=Code : Vérification de l'égalité, label=lst:comparaison]
+equation_1 <- integrate(function(x) exp(-x^2/2),-Inf,Inf)
+equation_2 <- sqrt(2*pi)
+ggplot(df, aes(x = x)) + # Tracer la fonction densité
+  geom_line(aes(y = y, color = "f1"), alpha = 0.5, size = 1) +  # Courbe rouge avec transparence
+  geom_line(aes(y = y2, color = "f2"), alpha = 0.5, size = 1) +  # Courbe bleue avec transparence
+  labs(x = "x", y = "y", color = "Légende")
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Code : Probabilités des lois normales, label=lst:theoreme]
+n <- 2000
+mu <- 1
+sigma <- 4
+ech <- rnorm(n, mu, sigma)
+ggplot(df, aes(x = (x - mu) / sigma)) +
+  geom_density(aes(color = "Densité simulée"), fill = "#00BFC4", alpha = 0.5) +
+  stat_function(fun = dnorm, aes(color = "Densité théorique"), size = 1.2) +
+  labs(x = "Valeurs", y = "Densité", color = "Légende")
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Code : Probabilités des lois normales, label=lst:q1]
+# A suivre du code TP, section : Exercices sur la loi normale, Question 1
+print(colSums(nd_en_col< -2)/n * 2000)
+print(colSums(nd_en_col< 0)/n * 2000)
+print(colSums(nd_en_col==0)/n * 2000)
+print(colSums(nd_en_col> 2)/n * 2000)
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Code : Probabilités par fonctions de répartition, label=lst:q6]
+pnorm(-1,0,2) # F(-1) : P(X <= -1)
+pnorm(2,0,2) # F(2) : P(X <= 2)
+1-pnorm(2,0,2) # 1 - F(2) : P(X > 2)
+pnorm(2,0,2)-pnorm(-1,0,2) # F(2) - F(-1) : P(-1 < X <= 2)
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Code : Lien entre les lois normales, label=lst:lien_normales]
+y <- rnorm(10000, 4, sqrt(3)) # On simule des variables aléatoires gaussiennes
+z <- (y - 2) / sqrt(3) # On applique la transformation linéaire
+# Graphique de comparaison entre y et z
+df <- data.frame(value = c(y, z), distribution = c(rep("Y", length(y)), rep("Z", length(z))))
+ggplot(df, aes(x = value, fill = distribution)) +
+    geom_histogram(aes(y = ..density..), position = "identity", alpha = 0.5, bins = 30) +
+    geom_density(alpha = 0.5)
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Code : Sommes de variables aléatoires gaussiennes, label=lst:somme_gaussiennes]
+# Meme ecart type mais pas de meme esperance
+lines(x,dnorm(x,1,sqrt(1*1 + 1*1)),col="blue4") #la loi proposée
+
+# Meme esperance mais pas de meme ecart type
+lines(x,dnorm(x,0,sqrt(1*1 + 2*2)),col="blue4") # la loi proposée
+\end{lstlisting}
+
+\begin{lstlisting}[caption=Code : Démonstration de la loi d'une moyenne de lois gaussienne $\bar{X}$, label=lst:mean_gaussiennes]
+n <- 10000 # Nombre de simulations
+x1<-rnorm(n,0,1) # On simule des variables aléatoires gaussiennes
+x2<-rnorm(n,0,2)
+x3<-rnorm(n,3,1)
+x4<-rnorm(n,2,1)
+
+x_bar <- (x1 + x2 + x3 + x4) / 4 # On calcule la moyenne de ces variables aléatoires
+
+hypothese <- rnorm(10000,(0+0+3+2)/4, sqrt(1*1 + 2*2 + 1*1 + 1*1)/4) # On simule l'hypothse de la loi d'une moyenne de lois gaussienne (voir rapport section 2.8)
+
+# Comparaison entre la moyenne et une loi normale
+df <- data.frame(value = c(moyenne, hypothese), 
+                    distribution = c(rep("Moyenne", length(moyenne)), rep("Hypothese", length(hypothese))))
+
+ggplot(df, aes(x = value, fill = distribution)) +
+    geom_histogram(aes(y = ..density..), position = "identity", alpha = 0.5) +
+    geom_density(alpha = 0.5)
+# Conclusion: On percoit bien que les deux densités se supperposent parfaitement.
+\end{lstlisting}
+
+
+
+\begin{lstlisting}[caption=Code : Exercice sur la loi normale, label=lst:exo]
+moyenneH <- 172 # moyenne de la taille des hommes
+varianceH <- 196 # variance de la taille des hommes
+question1 <- pnorm(160, moyenneH, sqrt(varianceH)) # F(160)
+question2 <- 1 - pnorm(200, moyenneH, sqrt(varianceH)) # 1 - F(200)
+question3 <- pnorm(185, moyenneH, sqrt(varianceH)) - pnorm(165, moyenneH, sqrt(varianceH)) # F(185) - F(165)
+moyenneF <- 162 # moyenne de la taille des femmes
+varianceF <- 144 # variance de la taille des femmes
+question4 <- 1 - pnorm(0, moyenneH - moyenneF, sqrt(varianceH + varianceF)) # 1 - F(0)
+\end{lstlisting}
+
+
+
+\begin{lstlisting}[caption=Code : Vérification de la densité de probabilité de la loi exponentielle, label=lst:exp]
+x <- seq(0, 10, 0.1)
+lambda <- 0.5
+f <- lambda * exp(-lambda * x)
+# Tracer la fonction densité avec ggplot
+df <- data.frame(x = x, f = f)
+ggplot(df, aes(x = x, y = f)) + geom_line(color = "blue")
+# vérifier l'ntégration à 1
+integrate(function(x) lambda * exp(-lambda * x), 0, Inf)  
+\end{lstlisting}
+
+
